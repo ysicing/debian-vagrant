@@ -121,17 +121,6 @@ function vbox_unregister {
     fi
 }
 
-function build_packer {
-    dep_packer
-    info "start build k8s debian box by packer ..."
-    packer build  ${PACKER_JSON}
-}
-
-function build {
-    build_packer
-    # build_vagrant
-}
-
 dep_vagrant
 dep_virtualbox
 dep_7z
@@ -142,4 +131,8 @@ check_isosum
 
 vbox_unregister
 
-build $2
+dep_packer
+
+info "start build k8s debian box by packer ..."
+
+packer build  ${PACKER_JSON}

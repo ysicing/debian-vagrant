@@ -1,32 +1,13 @@
 {
+  "description": "Ysicing Debian Stretch base box",
   "variables": {
-    "version": ""
+    "version": "9.7.0.{{timestamp}}",
+    "box_version": "9.7.0",
+    "box_changelog": "* new point release",
+    "cloud_token": "{{ env `ATLAS_TOKEN` }}"
   },
-  "provisioners": [
-    {
-      "type": "shell",
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/ansible.sh"
-    },
-    {
-      "type": "shell",
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/setup.sh"
-    },
-    {
-      "type": "ansible-local",
-      "playbook_file": "ansible/main.yml",
-      "galaxy_file": "requirements.yml"
-    },
-    {
-      "type": "shell",
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/cleanup.sh"
-    }
-  ],
   "builders": [
     {
-      "type": "virtualbox-iso",
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
@@ -37,11 +18,12 @@
         "kbd-chooser/method=us <wait>",
         "keyboard-configuration/xkb-keymap=us <wait>",
         "netcfg/get_hostname={{ .Name }} <wait>",
-        "netcfg/get_domain=vagrantup.com <wait>",
+        "netcfg/get_domain=localdomain <wait>",
         "fb=false <wait>",
         "debconf/frontend=noninteractive <wait>",
         "console-setup/ask_detect=false <wait>",
         "console-keymaps-at/keymap=us <wait>",
+        "net.ifnames=0 <wait>",
         "grub-installer/bootdev=/dev/sda <wait>",
         "<enter><wait>"
       ],
@@ -60,6 +42,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
+      "type": "virtualbox-iso",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
@@ -80,11 +63,31 @@
       ]
     }
   ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "pause_before": "5s",
+      "execute_command": "echo 'vagrant'| {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "environment_vars": [
+         "VAGRANT_BUILDER_FS=/"
+      ],
+      "scripts": [
+        "scripts/vagrant-setup.sh",
+        "scripts/minimize.sh"
+      ]
+    }
+  ],
   "post-processors": [
     [
       {
         "output": "builds/{{.Provider}}-debian9.box",
+        "vagrantfile_template": "vagrantfile.tpl",
         "type": "vagrant"
+      },{
+        "type": "vagrant-cloud",
+        "box_tag": "ysicing/debian",
+        "access_token": "{{user `cloud_token`}}",
+        "version": "{{user `version`}}"
       }
     ]
   ]
