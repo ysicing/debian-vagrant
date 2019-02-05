@@ -12,8 +12,8 @@ Vagrant.configure("2") do |config|
     config.vm.define "node#{i}" do |node|
       node.vm.box = "file://builds/virtualbox-debian9.box"
       node.vm.hostname = "node#{i}"
-      #node.ssh.username = "root"
-      #node.ssh.password = "vagrant"
+      node.ssh.username = "vagrant"
+      node.ssh.password = "vagrant"
       ip = "192.168.100.#{i+100}"
       node.vm.network "private_network", ip: ip
       node.vm.provider "virtualbox" do |vb|

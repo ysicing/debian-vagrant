@@ -133,6 +133,10 @@ vbox_unregister
 
 dep_packer
 
+[ -f "builds/virtualbox-debian9.box" ] && rm -rf builds/virtualbox-debian9.box
+
 info "start build k8s debian box by packer ..."
 
-packer build  ${PACKER_JSON}
+[ "$DEBUG" ] && MDEBUG="-debug" || MDEBUG=""
+
+packer build ${MDEBUG} ${PACKER_JSON} 

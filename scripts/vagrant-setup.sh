@@ -79,8 +79,9 @@ fi
 
 # Prevent DNS resolution (speed up logins)
 echo 'UseDNS no' >> $fs/etc/ssh/sshd_config
-# Disable password logins
-echo 'PasswordAuthentication no' >> $fs/etc/ssh/sshd_config
+# Enable password logins
+echo 'PasswordAuthentication yes' >> $fs/etc/ssh/sshd_config
+echo 'PermitRootLogin yes' >> $fs/etc/ssh/sshd_config
 
 # Reduce grub timeout to 1s to speed up booting
 [ -f $fs/etc/default/grub ] && \
