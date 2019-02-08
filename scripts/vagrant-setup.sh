@@ -32,8 +32,11 @@ echo 'debconf debconf/frontend select Noninteractive' | \
 printf '#!/bin/sh\nexit 101\n' > $fs/usr/sbin/policy-rc.d
 chmod +x $fs/usr/sbin/policy-rc.d
 echo 'Acquire::Languages "none";' > $fs/etc/apt/apt.conf.d/99translations
+
+
 chroot $fs apt-get update
 chroot $fs apt-get -qy dist-upgrade
+# chroot $fs apt-get install -t stretch-backports linux-image-amd64 -y
 
 #######################################################################
 # install packages from the 'important' and 'standard' sets
