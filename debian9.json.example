@@ -8,86 +8,90 @@
   },
   "builders": [
     {
+      "type": "virtualbox-iso",
+      "name": "k8s-debian-9-amd64",
+      "vm_name": "k8s-debian-9-amd64",
+      "output_directory": "output/k8s-debian-9-amd64",
+      "boot_wait": "5s",
       "boot_command": [
         "<esc><wait>",
-        "install <wait>",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
-        "debian-installer=en_US.UTF-8 <wait>",
-        "auto <wait>",
-        "locale=en_US.UTF-8 <wait>",
-        "kbd-chooser/method=us <wait>",
-        "keyboard-configuration/xkb-keymap=us <wait>",
-        "netcfg/get_hostname={{ .Name }} <wait>",
-        "netcfg/get_domain=localdomain <wait>",
-        "fb=false <wait>",
-        "debconf/frontend=noninteractive <wait>",
-        "console-setup/ask_detect=false <wait>",
-        "console-keymaps-at/keymap=us <wait>",
-        "net.ifnames=0 <wait>",
-        "grub-installer/bootdev=/dev/sda <wait>",
-        "<enter><wait>"
+        "auto ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",        
+        "<enter>"
       ],
-      "boot_wait": "5s",
       "disk_size": 81920,
+      "cpus": 2,
+      "memory": 2048,
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "64"
+        ]
+      ],
       "guest_os_type": "Debian_64",
-      "headless": true,
       "http_directory": "http",
+      "headless": true,
+      "vrdp_bind_address": "127.0.0.1",
+      "vrdp_port_min": 11000,
+      "vrdp_port_max": 12000,
       "iso_urls": [
         "iso/debian.iso",
         "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian.iso"
       ],
       "iso_checksum_type": "sha256",
       "iso_checksum": "xxxx_xxxx",
-      "ssh_username": "vagrant",
+      "ssh_username": "root",
       "ssh_password": "vagrant",
       "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "type": "virtualbox-iso",
+      "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-      "virtualbox_version_file": ".vbox_version",
-      "vm_name": "k8s-debian-9-amd64",
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "4096"
-        ],
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--cpus",
-          "2"
-        ]
-      ]
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.0.4/VBoxGuestAdditions_6.0.4.iso",
+      "guest_additions_sha256": "749b0c76aa6b588e3310d718fc90ea472fdc0b7c8953f7419c20be7e7fa6584a",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "virtualbox_version_file": "VBoxVersion.txt"      
     }
   ],
   "provisioners": [
     {
-      "type": "shell",
-      "pause_before": "5s",
-      "execute_command": "echo 'vagrant'| {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "environment_vars": [
-         "VAGRANT_BUILDER_FS=/"
-      ],
       "scripts": [
-        "scripts/vagrant-setup.sh",
-        "scripts/minimize.sh"
-      ]
+          "scripts/debian9/apt.sh",
+          "scripts/debian9/network.sh"
+          ],
+          "type": "shell",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true"
+    },
+    {
+      "scripts": [
+          "scripts/debian9/floppy.sh",
+          "scripts/debian9/profile.sh",
+          "scripts/debian9/vagrant.sh",
+          "scripts/debian9/motd.sh",
+          "scripts/debian9/fixtty.sh",
+          "scripts/debian9/virtualbox.sh",
+          "scripts/debian9/parallels.sh",
+          "scripts/debian9/vmware.sh",
+          "scripts/debian9/qemu.sh"
+          ],
+          "type": "shell",
+          "pause_before": "120s",
+          "start_retry_timeout": "15m",
+          "expect_disconnect": "true"
     }
   ],
   "post-processors": [
     [
       {
-        "output": "builds/{{.Provider}}-debian9.box",
-        "vagrantfile_template": "vagrantfile.tpl",
-        "type": "vagrant"
-      },{
-        "type": "vagrant-cloud",
-        "box_tag": "ysicing/debian",
-        "access_token": "{{user `cloud_token`}}",
-        "version": "{{user `version`}}"
+        "type": "vagrant",
+        "compression_level": 9,
+        "keep_input_artifact": false,
+        "vagrantfile_template": "tpl/vagrantfile.rb",
+        "output": "builds/{{.Provider}}-debian.{{user `box_version`}}.box",
+        "include": [
+            "tpl/author.json"
+        ]
       }
     ]
   ]

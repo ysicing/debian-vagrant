@@ -6,11 +6,11 @@ Vagrant.configure("2") do |config|
   config.vm.provider 'virtualbox' do |vb|
    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
   end  
-  #config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, disabled: true
   $num_instances = 1
   (1..$num_instances).each do |i|
     config.vm.define "node#{i}" do |node|
-      node.vm.box = "file://builds/virtualbox-debian9.box"
+      node.vm.box = "file://builds/virtualbox-debian.9.7.0.box"
       node.vm.hostname = "node#{i}"
       #node.ssh.username = "root"
       #node.ssh.password = "vagrant"
