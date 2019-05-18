@@ -11,3 +11,5 @@
 vagrant init ysicing/debian --box-version 9.7.0.1549265671
 vagrant up
 ```
+
+默认用户名`root/vagrant`

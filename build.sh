@@ -6,7 +6,7 @@ set -e
 
 function usage {
   echo "usage: $0 [stable|{x.y.z}]"
-  echo "       where {x.y.z} is a valid Debian version (e.g. 9.7.0)"
+  echo "       where {x.y.z} is a valid Debian version (e.g. 9.9.0)"
   exit
 }
 
@@ -50,7 +50,7 @@ VBGA_DEBIAN_PATH="/usr/share/virtualbox/VBoxGuestAdditions.iso"
 VBGA_ARCH_PATH="/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"
 VBGA_DARWIN_PATH="/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso"
 PACKER_JSON="${FOLDER_BASE}/debian9.json"
-BOX="k8s-debian-9-amd64"
+BOX="debian-9-amd64"
 
 function dep_vagrant {
     if [[ -z $(which vagrant) ]]; then
