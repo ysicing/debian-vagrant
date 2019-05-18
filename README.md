@@ -8,8 +8,8 @@
 ## usage
 
 ```bash
-vagrant init ysicing/debian --box-version 9.7.0.1549265671
+vagrant init ysicing/debian
 vagrant up
 ```
 
-默认用户名`root/vagrant`
+默认用户名`root/vagrant`,默认Debian 9.9
