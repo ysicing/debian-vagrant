@@ -12,7 +12,7 @@ printf "\nnet.ipv6.conf.all.disable_ipv6 = 1\n" >> /etc/sysctl.conf
 
 # Set the hostname, and then ensure it will resolve properly.
 printf "ysicing.local\n" > /etc/hostname
-printf "\n127.0.0.1 yscing.local\n\n" >> /etc/hosts
+printf "\n127.0.0.1 ysicing.local\n\n" >> /etc/hosts
 
 
 # Clear out the existing automatic ifup rules.
