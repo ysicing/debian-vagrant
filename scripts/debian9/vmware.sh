@@ -35,3 +35,7 @@ rm -rf /root/linux.iso; error
 
 #/tmp/vmware-tools-distrib/vmware-install.pl -d; error
 #rm -rf /tmp/vmware-tools-distrib; error
+
+# clean
+apt-get --assume-yes autoremove; error
+apt-get --assume-yes autoclean; error

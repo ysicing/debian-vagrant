@@ -48,28 +48,32 @@ apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # The packages users expect on a sane system.
-apt-get --assume-yes install vim net-tools mlocate psmisc; error
+apt-get --assume-yes install curl nano vim net-tools mlocate psmisc; error
 
 # The packages needed to compile magma.
-apt-get --assume-yes install gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
+# apt-get --assume-yes install gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr4 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
 
 # The memcached server.
-apt-get --assume-yes install memcached libevent-dev; error
+#apt-get --assume-yes install memcached libevent-dev; error
 
 # The postfix server for message relays.
-apt-get --assume-yes install postfix postfix-cdb libcdb1 ssl-cert; error
+# apt-get --assume-yes install postfix postfix-cdb libcdb1 ssl-cert; error
 
 # Need to retrieve the source code.
-apt-get --assume-yes install git git-man liberror-perl rsync wget; error
+apt-get --assume-yes install git rsync wget; error
 
 # Needed to run the watcher and status scripts.
-apt-get --assume-yes install sysstat inotify-tools; error
+apt-get --assume-yes install sysstat inotify-tools htop iotop iftop; error
 
 # Needed to run the stacie script.
-apt-get --assume-yes install python-crypto python-cryptography; error
+# apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Upgrade linux kernel
-apt-get --assume-yes install -t stretch-backports linux-image-amd64
-
+apt-get --assume-yes install -t stretch-backports linux-image-amd64; error
+apt-get --assume-yes dist-upgrade; error
 # Boosts the available entropy which allows magma to start faster.
-apt-get --assume-yes install haveged; error
+# apt-get --assume-yes install haveged; error
+
+# clean
+apt-get --assume-yes autoremove; error
+apt-get --assume-yes autoclean; error

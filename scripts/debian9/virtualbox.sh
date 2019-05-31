@@ -61,3 +61,7 @@ apt-get --assume-yes install haveged; error
 
 # Autostart the haveged daemon.
 systemctl enable haveged.service
+
+# clean
+apt-get --assume-yes autoremove; error
+apt-get --assume-yes autoclean; error

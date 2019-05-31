@@ -22,3 +22,7 @@ rmdir /mnt/parallels/
 # Cleanup the guest additions.
 rm --force /root/parallels-tools-linux.iso
 rm --force /root/parallels-tools-version.txt
+
+# clean
+apt-get --assume-yes autoremove; error
+apt-get --assume-yes autoclean; error

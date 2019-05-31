@@ -1,8 +1,8 @@
 {
   "description": "Ysicing Debian Stretch base box",
   "variables": {
-    "version": "9.9.0.{{timestamp}}",
-    "box_version": "9.9.0",
+    "version": "9.9.1.{{timestamp}}",
+    "box_version": "9.9.1",
     "box_changelog": "* new point release",
     "cloud_token": "{{ env `ATLAS_TOKEN` }}"
   },
@@ -47,8 +47,8 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.0.4/VBoxGuestAdditions_6.0.4.iso",
-      "guest_additions_sha256": "749b0c76aa6b588e3310d718fc90ea472fdc0b7c8953f7419c20be7e7fa6584a",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.0.8/VBoxGuestAdditions_6.0.8.iso",
+      "guest_additions_sha256": "4cb9a805267d8d338bfad0f3cef8b83132be6cad622c311daa41a18cc2ea4fda",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "virtualbox_version_file": "VBoxVersion.txt"      
     }
