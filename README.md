@@ -12,4 +12,4 @@ vagrant init ysicing/debian
 vagrant up
 ```
 
-默认用户名`root/vagrant`,默认Debian 9.9
+默认用户名`root/vagrant`,默认Debian 10.0

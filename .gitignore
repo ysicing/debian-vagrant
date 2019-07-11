@@ -3,6 +3,6 @@ packer_cache/*
 iso/*
 .vagrant/*
 output-virtualbox-iso
-debian9.json
+debian10.json
 .vagrant
 token
