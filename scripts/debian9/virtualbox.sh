@@ -39,6 +39,10 @@ export DEBIAN_FRONTEND=noninteractive
 export DEBCONF_NONINTERACTIVE_SEEN=true
 
 apt-get --assume-yes install dkms build-essential module-assistant linux-headers-$(uname -r); error
+#apt-get --assume-yes install -t stretch-backports linux-image-amd64; error
+#apt-get --assume-yes install -t stretch-backports linux-headers-4.19.0-0.bpo.6-amd64; error
+apt-get --assume-yes install dkms build-essential module-assistant; error
+
 
 # The group vboxsf is needed for shared folder access.
 getent group vboxsf >/dev/null || groupadd --system vboxsf; error
@@ -63,5 +67,5 @@ apt-get --assume-yes install haveged; error
 systemctl enable haveged.service
 
 # clean
-apt-get --assume-yes autoremove; error
-apt-get --assume-yes autoclean; error
+# apt-get --assume-yes autoremove; error
+# apt-get --assume-yes autoclean; error

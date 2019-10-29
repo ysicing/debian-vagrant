@@ -69,11 +69,12 @@ apt-get --assume-yes install sysstat inotify-tools htop iotop iftop; error
 # apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Upgrade linux kernel
-apt-get --assume-yes install -t stretch-backports linux-image-amd64; error
+#apt-get --assume-yes install -t stretch-backports linux-image-amd64; error
+#apt-get --assume-yes install -t stretch-backports linux-headers-4.19.0-0.bpo.6-amd64; error
 apt-get --assume-yes dist-upgrade; error
 # Boosts the available entropy which allows magma to start faster.
 # apt-get --assume-yes install haveged; error
 
 # clean
-apt-get --assume-yes autoremove; error
-apt-get --assume-yes autoclean; error
+# apt-get --assume-yes autoremove; error
+# apt-get --assume-yes autoclean; error
