@@ -1,6 +1,7 @@
 packer_cache/*
 *.box
 iso/*
+!iso/.gitkeep
 .vagrant/*
 output-virtualbox-iso
 debian10.json

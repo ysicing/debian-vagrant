@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   $num_instances = 1
   (1..$num_instances).each do |i|
     config.vm.define "node#{i}" do |node|
-      node.vm.box = "file://builds/virtualbox-debian.10.0.0.box"
+      node.vm.box = "file://builds/virtualbox-debian.10.2.0.box"
       node.vm.hostname = "node#{i}"
       #node.ssh.username = "root"
       #node.ssh.password = "vagrant"
@@ -18,8 +18,8 @@ Vagrant.configure("2") do |config|
       node.vm.network "private_network", ip: ip
       node.vm.provider "virtualbox" do |vb|
         vb.gui = false
-        vb.memory = "4096"
-        vb.cpus = 2
+        vb.memory = "1024"
+        vb.cpus = 1
         vb.name = "node#{i}"
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
         vb.customize ["modifyvm", :id, "--ioapic", "on"]

@@ -12,7 +12,7 @@ function usage {
 
 function get_version {
     PAGE=$(curl -s https://www.debian.org/CD/netinst/)
-    if [[ $PAGE =~ \<a\ href=\"https:\/\/cdimage\.debian\.org\/debian-cd\/current\/amd64\/bt-cd\/debian-([0-10\.]+)-amd64-netinst\.iso\.torrent ]]; then
+    if [[ $PAGE =~ \<a\ href=\"https:\/\/cdimage\.debian\.org\/debian-cd\/current\/amd64\/bt-cd\/debian-([0-10\.]+)-amd64-netinst\.iso ]]; then
         echo "${BASH_REMATCH[1]}"
     else
         abort "Failed to get current stable version number. Aborting."
@@ -36,12 +36,15 @@ case "$RELEASE_SPECIFIER" in
     ;;
 esac
 
+# https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.2.0-amd64-netinst.iso
+# https://mirrors.tuna.tsinghua.edu.cn/debian-cd/current/amd64/iso-cd/debian-10.2.0-amd64-netinst.iso
+
 VERSION_NUMBER="${VERSION_NUMBER:-$VERSION}"
 
 FOLDER_BASE=$(pwd)
 FOLDER_ISO="${FOLDER_BASE}/iso"
 DEBIAN_MIRROR="cdimage.debian.org"
-DEBIAN_URL="http://${DEBIAN_MIRROR}/mirror/cdimage/${MIRROR_DIR}/${ARCH}/iso-cd"
+DEBIAN_URL="https://mirrors.tuna.tsinghua.edu.cn/debian-cd/current/amd64/iso-cd"
 DEBIAN_ISO_NAME="debian-${VERSION_NUMBER}-${ARCH}-netinst.iso"
 DEBIAN_ISO_URL="${DEBIAN_URL}/${DEBIAN_ISO_NAME}"
 DEBIAN_ISO_FILE="${FOLDER_ISO}/${DEBIAN_ISO_NAME}"
