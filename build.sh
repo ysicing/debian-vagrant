@@ -4,40 +4,41 @@ set -e
 
 . scripts/utils.sh
 
-function usage {
-  echo "usage: $0 [stable|{x.y.z}]"
-  echo "       where {x.y.z} is a valid Debian version (e.g. 10.0.0)"
-  exit
-}
+# function usage {
+#   echo "usage: $0 [stable|{x.y.z}]"
+#   echo "       where {x.y.z} is a valid Debian version (e.g. 10.0.0)"
+#   exit
+# }
 
-function get_version {
-    PAGE=$(curl -s https://www.debian.org/CD/netinst/)
-    if [[ $PAGE =~ \<a\ href=\"https:\/\/cdimage\.debian\.org\/debian-cd\/current\/amd64\/bt-cd\/debian-([0-10\.]+)-amd64-netinst\.iso ]]; then
-        echo "${BASH_REMATCH[1]}"
-    else
-        abort "Failed to get current stable version number. Aborting."
-    fi
-}
+# function get_version {
+#     PAGE=$(curl -s https://www.debian.org/CD/netinst/)
+#     if [[ $PAGE =~ \<a\ href=\"https:\/\/cdimage\.debian\.org\/debian-cd\/current\/amd64\/bt-cd\/debian-([0-10\.]+)-amd64-netinst\.iso ]]; then
+#         echo "${BASH_REMATCH[1]}"
+#     else
+#         abort "Failed to get current stable version number. Aborting."
+#     fi
+# }
 
 ARCH="amd64"
-RELEASE_SPECIFIER="$1"
-case "$RELEASE_SPECIFIER" in
-    "" | "stable")
-        VERSION="current"
-        VERSION_NUMBER=$(get_version)
-        MIRROR_DIR="release/${VERSION_NUMBER}"
-    ;;
-    *.*.*)
-        VERSION="${RELEASE_SPECIFIER}"
-        MIRROR_DIR="archive/${VERSION}"
-    ;;
-    *)
-        usage
-    ;;
-esac
+VERSION="10.3.0"
+# RELEASE_SPECIFIER="$1"
+# case "$RELEASE_SPECIFIER" in
+#     "" | "stable")
+#         VERSION="current"
+#         VERSION_NUMBER=$(get_version)
+#         MIRROR_DIR="release/${VERSION_NUMBER}"
+#     ;;
+#     *.*.*)
+#         VERSION="${RELEASE_SPECIFIER}"
+#         MIRROR_DIR="archive/${VERSION}"
+#     ;;
+#     *)
+#         usage
+#     ;;
+# esac
 
-# https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.2.0-amd64-netinst.iso
-# https://mirrors.tuna.tsinghua.edu.cn/debian-cd/current/amd64/iso-cd/debian-10.2.0-amd64-netinst.iso
+# https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.3.0-amd64-netinst.iso
+# https://mirrors.tuna.tsinghua.edu.cn/debian-cd/current/amd64/iso-cd/debian-10.3.0-amd64-netinst.iso
 
 VERSION_NUMBER="${VERSION_NUMBER:-$VERSION}"
 
