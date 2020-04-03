@@ -45,16 +45,16 @@ VERSION_NUMBER="${VERSION_NUMBER:-$VERSION}"
 FOLDER_BASE=$(pwd)
 FOLDER_ISO="${FOLDER_BASE}/iso"
 DEBIAN_MIRROR="cdimage.debian.org"
-DEBIAN_URL="https://mirrors.tuna.tsinghua.edu.cn/debian-cd/current/amd64/iso-cd"
-DEBIAN_ISO_NAME="debian-${VERSION_NUMBER}-${ARCH}-netinst.iso"
+DEBIAN_URL="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/"
+DEBIAN_ISO_NAME="debian-testing-amd64-netinst.iso"
 DEBIAN_ISO_URL="${DEBIAN_URL}/${DEBIAN_ISO_NAME}"
 DEBIAN_ISO_FILE="${FOLDER_ISO}/${DEBIAN_ISO_NAME}"
 
 VBGA_DEBIAN_PATH="/usr/share/virtualbox/VBoxGuestAdditions.iso"
 VBGA_ARCH_PATH="/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"
 VBGA_DARWIN_PATH="/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso"
-PACKER_JSON="${FOLDER_BASE}/debian10.json"
-BOX="debian-10-amd64"
+PACKER_JSON="${FOLDER_BASE}/debian-test.json"
+BOX="debian-testing-amd64"
 
 function dep_vagrant {
     if [[ -z $(which vagrant) ]]; then
