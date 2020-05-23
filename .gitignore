@@ -8,3 +8,5 @@ debian10.json
 debian9.json
 .vagrant
 token
+output
+packer_cache

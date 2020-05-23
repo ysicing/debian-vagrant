@@ -20,7 +20,7 @@ set -e
 # }
 
 ARCH="amd64"
-VERSION="10.3.0"
+VERSION="10.4.0"
 # RELEASE_SPECIFIER="$1"
 # case "$RELEASE_SPECIFIER" in
 #     "" | "stable")
@@ -37,8 +37,8 @@ VERSION="10.3.0"
 #     ;;
 # esac
 
-# https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.3.0-amd64-netinst.iso
-# https://mirrors.tuna.tsinghua.edu.cn/debian-cd/current/amd64/iso-cd/debian-10.3.0-amd64-netinst.iso
+# https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.4.0-amd64-netinst.iso
+# https://mirrors.tuna.tsinghua.edu.cn/debian-cd/current/amd64/iso-cd/debian-10.4.0-amd64-netinst.iso
 
 VERSION_NUMBER="${VERSION_NUMBER:-$VERSION}"
 
