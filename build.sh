@@ -20,7 +20,7 @@ set -e
 # }
 
 ARCH="amd64"
-VERSION="10.4.0"
+VERSION="10.5.0"
 # RELEASE_SPECIFIER="$1"
 # case "$RELEASE_SPECIFIER" in
 #     "" | "stable")

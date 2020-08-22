@@ -57,6 +57,9 @@ systemctl stop apt-daily.service apt-daily.timer
 
 # Remove the CDROM as a media source.
 sed -i -e "/cdrom:/d" /etc/apt/sources.list
+sed -i -e "/deb-src /d" /etc/apt/sources.list
+sed -i -e "/# /d" /etc/apt/sources.list
+sed -i -e "/^$/d" /etc/apt/sources.list
 
 # Ensure the server includes any necessary updates.
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" update; error
@@ -79,10 +82,16 @@ retry apt-get --assume-yes install vim net-tools curl mlocate psmisc; error
 retry apt-get --assume-yes install git rsync wget lsb-release; error
 
 # Needed to run the watcher and status scripts.
-retry apt-get --assume-yes install sysstat inotify-tools htop iotop; error
+retry apt-get --assume-yes install sysstat inotify-tools htop; error
 
 # Needed to run the stacie script.
 # retry apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Boosts the available entropy which allows magma to start faster.
 # retry apt-get --assume-yes install haveged; error
+
+# Upgrade linux core
+retry apt-get --assume-yes install -t buster-backports linux-image-amd64; error
+retry update-grub; error
+
+printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 #!/bin/bash -eux
 
 retry() {
@@ -35,6 +33,6 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # The Ergo Install. ergo_linux_amd64
 
-retry curl -s -L https://github.com/ysicing/ergo/releases/download/0.6.7/ergo_linux_amd64 -o /usr/local/bin/ergo
+retry curl -s -L https://github.com/ysicing/ergo/releases/download/0.11.0/ergo_linux_amd64 -o /usr/local/bin/ergo
  
 chmod +x /usr/local/bin/ergo
