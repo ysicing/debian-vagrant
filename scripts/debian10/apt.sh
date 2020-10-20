@@ -94,4 +94,5 @@ retry apt-get --assume-yes install sysstat inotify-tools htop; error
 retry apt-get --assume-yes install -t buster-backports linux-image-amd64; error
 retry update-grub; error
 
+# Populate the mlocate database during boot.
 printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate

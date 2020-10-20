@@ -10,11 +10,11 @@ Vagrant.configure("2") do |config|
   $num_instances = 1
   (1..$num_instances).each do |i|
     config.vm.define "node#{i}" do |node|
-      node.vm.box = "file://builds/virtualbox-debian.10.6.0.box"
-      node.vm.hostname = "debian105-#{i}"
+      node.vm.box = "file://builds/virtualbox-debian.10.6.1.box"
+      node.vm.hostname = "debian1061-#{i}"
       #node.ssh.username = "root"
       #node.ssh.password = "vagrant"
-      ip = "11.11.11.#{i+10}"
+      ip = "11.100.100.#{i+10}"
       node.vm.network "private_network", ip: ip
       node.vm.provider "virtualbox" do |vb|
         vb.gui = false

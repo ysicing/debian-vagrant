@@ -33,7 +33,7 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 
 # The Ergo Install. ergo_linux_amd64
 
-#retry curl -s -L https://github.com/ysicing/ergo/releases/download/1.0.0-alpha01/ergo_linux_amd64 -o /usr/local/bin/ergo
+#retry curl -s -L https://github.com/ysicing/ergo/releases/download/1.0.1/ergo_linux_amd64 -o /usr/local/bin/ergo
  
-retry curl -s -L https://gh.api.99988866.xyz/https://github.com/ysicing/ergo/releases/download/1.0.0-alpha01/ergo_linux_amd64 -o /usr/local/bin/ergo
+retry curl -s -L https://gh.api.99988866.xyz/https://github.com/ysicing/ergo/releases/download/1.0.1/ergo_linux_amd64 -o /usr/local/bin/ergo
 chmod +x /usr/local/bin/ergo
