@@ -67,7 +67,7 @@ retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" upgrade; error
 retry apt-get --assume-yes -o Dpkg::Options::="--force-confnew" dist-upgrade; error
 
 # The packages users expect on a sane system.
-retry apt-get --assume-yes install vim net-tools curl mlocate psmisc; error
+retry apt-get --assume-yes install vim nano net-tools curl mlocate psmisc; error
 
 # The packages needed to compile magma.
 # retry apt-get --assume-yes install gcc g++ gawk gcc-multilib make autoconf automake libtool flex bison gdb valgrind valgrind-dbg libpython2.7 libc6-dev libc++-dev libncurses5-dev libmpfr6 libmpfr-dev patch make cmake libarchive13 libbsd-dev libsubunit-dev libsubunit0 pkg-config lsb-release; error
@@ -88,11 +88,11 @@ retry apt-get --assume-yes install sysstat inotify-tools htop; error
 # retry apt-get --assume-yes install python-crypto python-cryptography; error
 
 # Boosts the available entropy which allows magma to start faster.
-# retry apt-get --assume-yes install haveged; error
+retry apt-get --assume-yes install haveged; error
 
 # Upgrade linux core
-retry apt-get --assume-yes install -t buster-backports linux-image-amd64; error
-retry update-grub; error
+# retry apt-get --assume-yes install -t buster-backports linux-image-amd64; error
+# retry update-grub; error
 
 # Populate the mlocate database during boot.
 printf "@reboot root command bash -c '/etc/cron.daily/mlocate'\n" > /etc/cron.d/mlocate

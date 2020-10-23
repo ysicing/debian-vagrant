@@ -12,13 +12,13 @@ vagrant init ysicing/debian
 vagrant up
 ```
 
-默认用户名`root/vagrant`,默认Debian 10.6.1
+默认用户名`root/vagrant`,默认Debian 10.6
 
 ## intro
 
 ```
 ~$ uname -a
-Linux debian1061-1 5.8.0-0.bpo.2-amd64 #1 SMP Debian 5.8.10-1~bpo10+1 (2020-09-26) x86_64 GNU/Linux
+Linux 27e2dfe262d0530a3b3d969b44425e3a1 4.19.0-12-amd64 #1 SMP Debian 4.19.152-1 (2020-10-18) x86_64 GNU/Linux
 
 ~$ ergo version
 效能工具: ergo
