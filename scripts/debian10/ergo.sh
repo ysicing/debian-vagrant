@@ -35,5 +35,5 @@ export DEBCONF_NONINTERACTIVE_SEEN=true
 
 #retry curl -s -L https://github.com/ysicing/ergo/releases/download/1.0.1/ergo_linux_amd64 -o /usr/local/bin/ergo
  
-retry curl -s -L https://g.ioiox.com/https://github.com/ysicing/ergo/releases/download/1.0.1/ergo_linux_amd64 -o /usr/local/bin/ergo
+retry curl -s -L https://g.ioiox.com/https://github.com/ysicing/ergo/releases/download/1.0.8/ergo_linux_amd64 -o /usr/local/bin/ergo
 chmod +x /usr/local/bin/ergo
