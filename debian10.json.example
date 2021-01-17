@@ -9,8 +9,8 @@
   "builders": [
     {
       "type": "virtualbox-iso",
-      "name": "debian10-7-0-amd64",
-      "vm_name": "debian10-7-0-amd64",
+      "name": "virtualbox-debian10-7-0-amd64",
+      "vm_name": "virtualbox-debian10-7-0-amd64",
       "output_directory": "output/debian-10.7.0-amd64-virtualbox",
       "boot_wait": "10s",
       "boot_command": [
@@ -63,6 +63,84 @@
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"      
+    },
+    {
+      "type": "parallels-iso",
+      "name": "parallels-debian10-7-0-amd64",
+      "vm_name": "parallels-debian10-7-0-amd64",
+      "output_directory": "output/debian-10.7.0-amd64-parallels",
+      "boot_wait": "10s",
+      "boot_command": [
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
+        "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
+        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/preseed.cfg ",
+        "<enter>"
+      ],
+      "disk_size": 131072,
+      "cpus": 2,
+      "memory": 2048,
+      "prlctl": [
+        [
+          "set",
+          "{{.Name}}",
+          "--adaptive-hypervisor",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--3d-accelerate",
+          "off"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--videosize",
+          "16"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--pmu-virt",
+          "on"
+        ],
+        [
+          "set",
+          "{{.Name}}",
+          "--faster-vm",
+          "on"
+        ]
+      ],
+      "hard_drive_interface": "ide",
+      "guest_os_type": "debian",
+      "skip_compaction": false,
+      "http_directory": "http",
+      "iso_urls": [
+        "iso/debian.iso",
+        "iso/debian-10.7.0-amd64-netinst.iso",
+        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/10.7.0/amd64/iso-cd/debian-10.7.0-amd64-netinst.iso",
+        "http://cdimage.debian.org/mirror/cdimage/release/10.7.0/amd64/iso-cd/debian-10.7.0-amd64-netinst.iso",
+        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.7.0-amd64-netinst.iso"
+      ],
+      "iso_checksum": "sha256:xxxx_xxxx",
+      "ssh_username": "root",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_timeout": "3600s",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_mode": "upload",
+      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
+      "prlctl_version_file": "/root/parallels-tools-version.txt"
     }
   ],
   "provisioners": [
@@ -83,6 +161,7 @@
           "scripts/debian10/motd.sh",
           "scripts/debian10/fixtty.sh",
           "scripts/debian10/virtualbox.sh",
+          "scripts/debian10/parallels.sh",
           "scripts/debian10/ergo.sh"
           ],
           "type": "shell",

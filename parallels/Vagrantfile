@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box_check_update = false
+  # config.vm.provider 'parallels' do |prl|
+  #  prl.customize ["set", :id, "--device-set", "cdrom0", "--image", "/path/to/disk.iso", "--connect"]
+  # end  
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, disabled: true
+  $num_instances = 1
+  (1..$num_instances).each do |i|
+    config.vm.define "node#{i}" do |node|
+      node.vm.box = "file://../builds/parallels-debian.10.7.0.box"
+      node.vm.hostname = "debian1070-#{i}"
+      #node.ssh.username = "root"
+      #node.ssh.password = "vagrant"
+      ip = "11.100.100.#{i+10}"
+      node.vm.network "private_network", ip: ip
+      node.vm.provider "parallels" do |prl|
+        prl.memory = "1024"
+        prl.cpus = 1
+        prl.name = "node#{i}"
+        prl.linked_clone = false
+        prl.update_guest_tools = true
+      end
+      node.vm.provision "shell", inline: "uname -a"
+    end
+  end
+end
