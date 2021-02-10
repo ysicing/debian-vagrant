@@ -12,23 +12,24 @@ vagrant init ysicing/debian
 vagrant up
 ```
 
-默认用户名`root/vagrant`,默认Debian 10.7
+默认用户名`root/vagrant`,默认Debian 10.8
 
 ## intro
 
 ```
 ~$ uname -a
-Linux debian1070-1 4.19.0-13-amd64 #1 SMP Debian 4.19.160-2 (2020-11-28) x86_64 GNU/Linux
+Linux debian1080-1 4.19.0-14-amd64 #1 SMP Debian 4.19.171-2 (2021-01-30) x86_64 GNU/Linux
 
 ~$ ergo version
+ing config file: /home/vagrant/.config/ergo/config.yaml
 效能工具: ergo
- Version:           1.0.8
- Go version:        go1.15.6
- Git commit:        97a96f7eaa36ba88f7ad6fd4f251cc7343fd1447
- Built:             2020-12-08 21:57:49
+ Version:           1.0.13
+ Go version:        go1.15.7
+ Git commit:        dddc8ff35bc379e14da535a3f13aa1ebf81b0190
+ Built:             2021-02-04 16:37:20
  OS/Arch:           linux/amd64
  Experimental:      false
- Repo: https://github.com/ysicing/ergo/releases/tag/1.0.8
+ Repo: https://github.com/ysicing/ergo/releases/tag/1.0.13
 
 ~# ergo vm init --local #  初始化debian
 ~# ergo vm upcore --local # 升级内核
@@ -37,4 +38,11 @@ Linux debian1070-1 4.19.0-13-amd64 #1 SMP Debian 4.19.160-2 (2020-11-28) x86_64 
 
 export PATH=/usr/sbin:$PATH 
 在执行
+```
+
+### 可能ergo问题
+
+```
+curl -s -L https://ghproxy.com/https://github.com/ysicing/ergo/releases/download/1.0.13/ergo_linux_amd64 -o /usr/local/bin/ergo
+chmod +x /usr/local/bin/ergo
 ```
