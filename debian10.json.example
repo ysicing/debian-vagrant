@@ -1,17 +1,17 @@
 {
   "description": "Ysicing Debian buster base box",
   "variables": {
-    "version": "10.8.0.{{timestamp}}",
-    "box_version": "10.8.0",
+    "version": "10.9.0.{{timestamp}}",
+    "box_version": "10.9.0",
     "box_changelog": "* new point release",
     "cloud_token": "{{ env `ATLAS_TOKEN` }}"
   },
   "builders": [
     {
       "type": "virtualbox-iso",
-      "name": "virtualbox-debian10-8-0-amd64",
-      "vm_name": "virtualbox-debian10-8-0-amd64",
-      "output_directory": "output/debian-10.8.0-amd64-virtualbox",
+      "name": "virtualbox-debian10-9-0-amd64",
+      "vm_name": "virtualbox-debian10-9-0-amd64",
+      "output_directory": "output/debian-10.9.0-amd64-virtualbox",
       "boot_wait": "10s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -47,10 +47,10 @@
       "vrdp_port_max": 12000,
       "iso_urls": [
         "iso/debian.iso",
-        "iso/debian-10.8.0-amd64-netinst.iso",
-        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/10.8.0/amd64/iso-cd/debian-10.8.0-amd64-netinst.iso",
-        "http://cdimage.debian.org/mirror/cdimage/release/10.8.0/amd64/iso-cd/debian-10.8.0-amd64-netinst.iso",
-        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.8.0-amd64-netinst.iso"
+        "iso/debian-10.9.0-amd64-netinst.iso",
+        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/10.9.0/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso",
+        "http://cdimage.debian.org/mirror/cdimage/release/10.9.0/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso",
+        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso"
       ],
       "iso_checksum": "sha256:xxxx_xxxx",
       "ssh_username": "root",
@@ -66,9 +66,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "parallels-debian10-8-0-amd64",
-      "vm_name": "parallels-debian10-8-0-amd64",
-      "output_directory": "output/debian-10.8.0-amd64-parallels",
+      "name": "parallels-debian10-9-0-amd64",
+      "vm_name": "parallels-debian10-9-0-amd64",
+      "output_directory": "output/debian-10.9.0-amd64-parallels",
       "boot_wait": "10s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -126,10 +126,10 @@
       "http_directory": "http",
       "iso_urls": [
         "iso/debian.iso",
-        "iso/debian-10.8.0-amd64-netinst.iso",
-        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/10.8.0/amd64/iso-cd/debian-10.8.0-amd64-netinst.iso",
-        "http://cdimage.debian.org/mirror/cdimage/release/10.8.0/amd64/iso-cd/debian-10.8.0-amd64-netinst.iso",
-        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.8.0-amd64-netinst.iso"
+        "iso/debian-10.9.0-amd64-netinst.iso",
+        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/10.9.0/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso",
+        "http://cdimage.debian.org/mirror/cdimage/release/10.9.0/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso",
+        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso"
       ],
       "iso_checksum": "sha256:xxxx_xxxx",
       "ssh_username": "root",
