@@ -4,6 +4,7 @@ iso/*
 !iso/.gitkeep
 .vagrant/*
 output-virtualbox-iso
+debian11.json
 debian10.json
 debian9.json
 .vagrant

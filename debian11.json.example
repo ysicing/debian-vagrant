@@ -1,17 +1,17 @@
 {
-  "description": "Ysicing Debian buster base box",
+  "description": "Ysicing Debian Bullseye base box",
   "variables": {
-    "version": "10.9.0.{{timestamp}}",
-    "box_version": "10.9.0",
+    "version": "11.0.0.{{timestamp}}",
+    "box_version": "11.0.0",
     "box_changelog": "* new point release",
     "cloud_token": "{{ env `ATLAS_TOKEN` }}"
   },
   "builders": [
     {
       "type": "virtualbox-iso",
-      "name": "virtualbox-debian10-9-0-amd64",
-      "vm_name": "virtualbox-debian10-9-0-amd64",
-      "output_directory": "output/debian-10.9.0-amd64-virtualbox",
+      "name": "virtualbox-debian11-0-0-amd64",
+      "vm_name": "virtualbox-debian11-0-0-amd64",
+      "output_directory": "output/debian-11.0.0-amd64-virtualbox",
       "boot_wait": "10s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -47,10 +47,10 @@
       "vrdp_port_max": 12000,
       "iso_urls": [
         "iso/debian.iso",
-        "iso/debian-10.9.0-amd64-netinst.iso",
-        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/10.9.0/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso",
-        "http://cdimage.debian.org/mirror/cdimage/release/10.9.0/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso",
-        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso"
+        "iso/debian-11.0.0-amd64-netinst.iso",
+        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
+        "http://cdimage.debian.org/mirror/cdimage/release/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
+        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso"
       ],
       "iso_checksum": "sha256:xxxx_xxxx",
       "ssh_username": "root",
@@ -66,9 +66,9 @@
     },
     {
       "type": "parallels-iso",
-      "name": "parallels-debian10-9-0-amd64",
-      "vm_name": "parallels-debian10-9-0-amd64",
-      "output_directory": "output/debian-10.9.0-amd64-parallels",
+      "name": "parallels-debian11-0-0-amd64",
+      "vm_name": "parallels-debian11-0-0-amd64",
+      "output_directory": "output/debian-11.0.0-amd64-parallels",
       "boot_wait": "10s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -126,10 +126,10 @@
       "http_directory": "http",
       "iso_urls": [
         "iso/debian.iso",
-        "iso/debian-10.9.0-amd64-netinst.iso",
-        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/10.9.0/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso",
-        "http://cdimage.debian.org/mirror/cdimage/release/10.9.0/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso",
-        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.9.0-amd64-netinst.iso"
+        "iso/debian-11.0.0-amd64-netinst.iso",
+        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
+        "http://cdimage.debian.org/mirror/cdimage/release/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
+        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso"
       ],
       "iso_checksum": "sha256:xxxx_xxxx",
       "ssh_username": "root",
@@ -146,8 +146,8 @@
   "provisioners": [
     {
       "scripts": [
-          "scripts/debian10/apt.sh",
-          "scripts/debian10/network.sh"
+          "scripts/debian11/apt.sh",
+          "scripts/debian11/network.sh"
           ],
           "type": "shell",
           "start_retry_timeout": "15m",
@@ -155,14 +155,14 @@
     },
     {
       "scripts": [
-          "scripts/debian10/floppy.sh",
-          "scripts/debian10/profile.sh",
-          "scripts/debian10/vagrant.sh",
-          "scripts/debian10/motd.sh",
-          "scripts/debian10/fixtty.sh",
-          "scripts/debian10/virtualbox.sh",
-          "scripts/debian10/parallels.sh",
-          "scripts/debian10/ergo.sh"
+          "scripts/debian11/floppy.sh",
+          "scripts/debian11/profile.sh",
+          "scripts/debian11/vagrant.sh",
+          "scripts/debian11/motd.sh",
+          "scripts/debian11/fixtty.sh",
+          "scripts/debian11/virtualbox.sh",
+          "scripts/debian11/parallels.sh",
+          "scripts/debian11/ergo.sh"
           ],
           "type": "shell",
           "pause_before": "120s",

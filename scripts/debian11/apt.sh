@@ -91,7 +91,7 @@ retry apt-get --assume-yes install sysstat inotify-tools htop; error
 retry apt-get --assume-yes install haveged; error
 
 # Upgrade linux core
-retry apt-get --assume-yes install -t buster-backports linux-image-amd64; error
+retry apt-get --assume-yes install -t bullseye-backports linux-image-amd64; error
 retry update-grub; error
 
 # Populate the mlocate database during boot.

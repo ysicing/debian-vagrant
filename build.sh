@@ -6,7 +6,7 @@ set -e
 
 # function usage {
 #   echo "usage: $0 [stable|{x.y.z}]"
-#   echo "       where {x.y.z} is a valid Debian version (e.g. 10.0.0)"
+#   echo "       where {x.y.z} is a valid Debian version (e.g. 11.0.0)"
 #   exit
 # }
 
@@ -20,7 +20,7 @@ set -e
 # }
 
 ARCH="amd64"
-VERSION="10.9.0"
+VERSION="11.0.0"
 # RELEASE_SPECIFIER="$1"
 # case "$RELEASE_SPECIFIER" in
 #     "" | "stable")
@@ -53,8 +53,8 @@ DEBIAN_ISO_FILE="${FOLDER_ISO}/${DEBIAN_ISO_NAME}"
 VBGA_DEBIAN_PATH="/usr/share/virtualbox/VBoxGuestAdditions.iso"
 VBGA_ARCH_PATH="/usr/lib/virtualbox/additions/VBoxGuestAdditions.iso"
 VBGA_DARWIN_PATH="/Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso"
-PACKER_JSON="${FOLDER_BASE}/debian10.json"
-BOX="debian-10-amd64"
+PACKER_JSON="${FOLDER_BASE}/debian11.json"
+BOX="debian-11-amd64"
 
 function dep_vagrant {
     if [[ -z $(which vagrant) ]]; then
