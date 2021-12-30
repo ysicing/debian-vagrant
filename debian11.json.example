@@ -1,17 +1,17 @@
 {
   "description": "Ysicing Debian Bullseye base box",
   "variables": {
-    "version": "11.0.0.{{timestamp}}",
-    "box_version": "11.0.0",
+    "version": "11.2.0.{{timestamp}}",
+    "box_version": "11.2.0",
     "box_changelog": "* new point release",
     "cloud_token": "{{ env `ATLAS_TOKEN` }}"
   },
   "builders": [
     {
       "type": "virtualbox-iso",
-      "name": "virtualbox-debian11-0-0-amd64",
-      "vm_name": "virtualbox-debian11-0-0-amd64",
-      "output_directory": "output/debian-11.0.0-amd64-virtualbox",
+      "name": "virtualbox-debian11-2-0-amd64",
+      "vm_name": "virtualbox-debian11-2-0-amd64",
+      "output_directory": "output/debian-11.2.0-amd64-virtualbox",
       "boot_wait": "10s",
       "boot_command": [
         "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
@@ -46,11 +46,10 @@
       "vrdp_port_min": 11000,
       "vrdp_port_max": 12000,
       "iso_urls": [
-        "iso/debian.iso",
-        "iso/debian-11.0.0-amd64-netinst.iso",
-        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
-        "http://cdimage.debian.org/mirror/cdimage/release/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
-        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso"
+        "iso/debian-11.2.0-amd64-netinst.iso",
+        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/11.0.0/amd64/iso-cd/debian-11.2.0-amd64-netinst.iso",
+        "http://cdimage.debian.org/mirror/cdimage/release/11.0.0/amd64/iso-cd/debian-11.2.0-amd64-netinst.iso",
+        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.2.0-amd64-netinst.iso"
       ],
       "iso_checksum": "sha256:xxxx_xxxx",
       "ssh_username": "root",
@@ -58,89 +57,11 @@
       "ssh_port": 22,
       "ssh_wait_timeout": "3600s",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-      "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.44/VBoxGuestAdditions_5.2.44.iso",
-      "guest_additions_sha256": "9883ee443a309f4ffa1d5dee2833f9e35ced598686c36d159f410e5edbac1ca4",
+      "guest_additions_url": "https://download.virtualbox.org/virtualbox/6.1.30/VBoxGuestAdditions_6.1.30.iso",
+      "guest_additions_sha256": "d324d2d09d8dd00b1eb3ef3d80ab2e1726998421d13adc0d2a90e05d355aaa5c",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
       "virtualbox_version_file": "VBoxVersion.txt"      
-    },
-    {
-      "type": "parallels-iso",
-      "name": "parallels-debian11-0-0-amd64",
-      "vm_name": "parallels-debian11-0-0-amd64",
-      "output_directory": "output/debian-11.0.0-amd64-parallels",
-      "boot_wait": "10s",
-      "boot_command": [
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "<esc><wait><esc><wait><esc><wait><esc><wait><esc><wait><esc><wait>",
-        "/install.amd/vmlinuz auto=true priority=critical vga=788 initrd=/install.amd/gtk/initrd.gz --- quiet ",
-        "ipv6.disable_ipv6=1 net.ifnames=0 biosdevname=0 preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/preseed.cfg ",
-        "<enter>"
-      ],
-      "disk_size": 131072,
-      "cpus": 2,
-      "memory": 2048,
-      "prlctl": [
-        [
-          "set",
-          "{{.Name}}",
-          "--adaptive-hypervisor",
-          "on"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--3d-accelerate",
-          "off"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--videosize",
-          "16"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--pmu-virt",
-          "on"
-        ],
-        [
-          "set",
-          "{{.Name}}",
-          "--faster-vm",
-          "on"
-        ]
-      ],
-      "hard_drive_interface": "ide",
-      "guest_os_type": "debian",
-      "skip_compaction": false,
-      "http_directory": "http",
-      "iso_urls": [
-        "iso/debian.iso",
-        "iso/debian-11.0.0-amd64-netinst.iso",
-        "https://mirrors.tuna.tsinghua.edu.cn/debian-cd/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
-        "http://cdimage.debian.org/mirror/cdimage/release/11.0.0/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso",
-        "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.0.0-amd64-netinst.iso"
-      ],
-      "iso_checksum": "sha256:xxxx_xxxx",
-      "ssh_username": "root",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_timeout": "3600s",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "parallels_tools_flavor": "lin",
-      "parallels_tools_mode": "upload",
-      "parallels_tools_guest_path": "/root/parallels-tools-linux.iso",
-      "prlctl_version_file": "/root/parallels-tools-version.txt"
     }
   ],
   "provisioners": [
@@ -150,6 +71,7 @@
           "scripts/debian11/network.sh"
           ],
           "type": "shell",
+          "timeout": "120m",
           "start_retry_timeout": "15m",
           "expect_disconnect": "true"
     },
@@ -165,6 +87,7 @@
           "scripts/debian11/ergo.sh"
           ],
           "type": "shell",
+          "timeout": "120m",
           "pause_before": "120s",
           "start_retry_timeout": "15m",
           "expect_disconnect": "true"

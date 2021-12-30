@@ -12,7 +12,7 @@ vagrant init ysicing/debian
 vagrant up
 ```
 
-默认用户名`root/vagrant`,默认Debian 11.0
+默认用户名`root/vagrant`,默认Debian 11.2
 
 ## intro
 
@@ -38,11 +38,4 @@ ing config file: /home/vagrant/.config/ergo/config.yaml
 
 export PATH=/usr/sbin:$PATH 
 在执行
-```
-
-### 可能ergo问题
-
-```
-curl -s -L https://ghproxy.com/https://github.com/ysicing/ergo/releases/download/1.0.13/ergo_linux_amd64 -o /usr/local/bin/ergo
-chmod +x /usr/local/bin/ergo
 ```
